@@ -4,11 +4,17 @@ import Classes.CollectionOfPerson;
 import Classes.Country;
 import Classes.Person;
 
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.IOException;
 import java.lang.reflect.InvocationTargetException;
 import java.util.*;
 import java.lang.reflect.Method;
 
-
+/**
+ * Класс, содержащий методы, вызываемые напрямую после соответствующих команд пользователя,
+ * а также методы по обработке полученных данных
+ */
 public class CommandUser {
     /**
      * Словарь, сопоставляющий доступные команды с соответствующими методами
@@ -41,6 +47,27 @@ public class CommandUser {
             }
         }
     }
+    /**
+     * Метод, вызываемый командой <strong>help</strong>
+     */
+    @Command1(name = "help",
+            args = "",
+            countOfArgs = 0,
+            desc = "Доступные пользователю команды",
+            aliases = {})
+    private void help() {
+        StringBuilder sb = new StringBuilder("Список доступных команд: \n");
+        for (Method m : this.getClass().getDeclaredMethods()) {
+            if (m.isAnnotationPresent(Command1.class)) {
+                Command1 com = m.getAnnotation(Command1.class);
+                sb.append(com.name()).append(" ")
+                        .append(com.args()).append(" - ")
+                        .append(com.desc()).append("\n");
+            }
+        }
+        System.out.println(sb);
+    }
+
 
     /**
      * Метод, вызываемый командой <strong>info</strong>
@@ -57,32 +84,31 @@ public class CommandUser {
 
     /**
      * Метод, вызываемый командой <strong>add</strong>
-     *
-     * @param personName  имя человека, которого добавляет пользователь
-     * @param height      рост человека, которого добавляет пользователь
-     * @param nationality национальность человека, которого добавляет пользователь
      */
     @Command1(name = "add",
-            args = "{name height nationality}",
-            countOfArgs = Person.COUNT_OF_PRIMITIVE_ARGS,
+            args = "",
+            countOfArgs =  0,
             desc = "Добавить элемент в коллекцию",
             aliases = {})
-    private void add(String personName, String height, Country nationality) {
-        String name = personName.substring(0, 1).toUpperCase() + personName.substring(1); //Делаем имя с большой буквы
-        Person person = new Person();
-        try {
-            person.setHeight(Long.parseLong(height));
-        } catch (NumberFormatException e) {
-            System.out.println("Аргументы имеют неверный формат");
-            return;
-        }
-        person.setName(name);
-        person.setNationality(nationality);
-        person.setCoordinates(argumentsListener.inputCoordinates());
-        argumentsListener.inputEyeColor(person);
-        collection.addPerson(person);
+    private void add() throws IOException {
+        collection.addPerson();
     }
+    /**
+     * Метод, вызываемый командой <strong>save</strong>
+*/
+    @Command1(name = "save",
+            args = "",
+            countOfArgs = 0,
+            desc = "Сохранение коллекции в файл",
+            aliases = {})
+    private void save() throws IOException {
+        AbobaWriter abobaWriter = new AbobaWriter();
+        LinkedList<Person> collectionForSave = new LinkedList<>();
+        collectionForSave.addAll(CollectionOfPerson.getPersons());
+        abobaWriter.write(collectionForSave);
+        System.out.println("Коллекция успешно сохранена");
 
+    }
     /**
      * Метод, вызываемый командой <strong>update</strong>
      *
@@ -91,19 +117,110 @@ public class CommandUser {
     @Command1(name = "update",
             args = "{id}",
             countOfArgs = 1,
-            desc = "Обновить данные о элементе коллекции по данному id",
+            desc = "Обновить данные об элементе коллекции по данному id(введите id)",
             aliases = {})
     private void update(String id) {
         long newId = Integer.parseInt(id);
         for (Person element : collection.getPersons()) {
             if (element.getId() == newId) {
-                System.out.println("Введите информацию о человеке: {name, height, nationality}");
+                System.out.println("Введите информацию о человеке: {name[записать буквами] height[>0, записать цифрами] nationality[выбрать: " + Arrays.toString(Country.values()));
                 Scanner sc = new Scanner(System.in);
                 argumentsListener.inputPrimitives(element);
-                element.setCoordinates(argumentsListener.inputCoordinates());
+                argumentsListener.inputCoordinates();
                 argumentsListener.inputEyeColor(element);
+
                 System.out.println("Данные о человеке успешно обновлены");
+            } else {
+                collection.addPerson();
             }
+        }
+    }
+
+
+    /**
+     * Метод, вызываемый командой <strong>exit</strong>
+     *
+     * @throws IOException может возникнуть при неполадках с сохранением данных в файл
+     */
+    @Command1(name = "exit",
+            args = "",
+            countOfArgs = 0,
+            desc = "Выход из программы без сохранения",
+            aliases = {})
+    private void exit() throws IOException {
+        System.out.println("Сохранить коллекцию в файл? y/n");
+        Scanner sc = new Scanner(System.in);
+        if (sc.nextLine().equals("y")) {
+            save();
+        }
+        System.exit(0);
+    }
+
+
+    @Command1(name = "remove_greater",
+            args = "{heightFromConsole}",
+            countOfArgs = 1,
+            desc = "удалить из коллекции все элементы, превышающие заданный(введите параметр существования заданного человека в коллекции true/false и заданного человека",
+            aliases = {})
+    private void removerGreater(String heightFromConsole) {
+        int countOfPerson = 0;
+        int heightGreater = Integer.parseInt(heightFromConsole);
+        LinkedList<Person> personForRemoveGreater = new LinkedList<>();
+        personForRemoveGreater.addAll(CollectionOfPerson.getPeople());
+        for (Person person : personForRemoveGreater) {
+            if (person.getHeight() > heightGreater) {
+                CollectionOfPerson.getPersons().remove(person);
+                countOfPerson++;
+            }
+        }
+        if (countOfPerson != 0) {
+            System.out.println("Количество удалённых людей " + countOfPerson);
+        }
+    }
+
+
+    @Command1(name = "remove_lower",
+            args = "{heightFromConsole}",
+            countOfArgs = 1,
+            desc = "удалить из коллекции все элементы, меньшие, чем  заданный",
+            aliases = {})
+    private void removerLower(String heightFromConsole) {
+        int countOfPerson = 0;
+        int heightGreater = Integer.parseInt(heightFromConsole);
+        LinkedList<Person> personForRemoveGreater = new LinkedList<>();
+        personForRemoveGreater.addAll(CollectionOfPerson.getPeople());
+        for (Person person : personForRemoveGreater) {
+            if (person.getHeight() < heightGreater) {
+                CollectionOfPerson.getPersons().remove(person);
+                countOfPerson++;
+            }
+        }
+        if (countOfPerson != 0) {
+            System.out.println("Количество удалённых людей " + countOfPerson);
+        }
+    }
+
+    /** Метод, вызываемый командой <strong>remove_by_id</strong>
+     */
+    @Command1(name = "remove_by_id",
+            args = "{id}",
+            countOfArgs = 1,
+            desc = "удалить элемент из коллекции по его id",
+            aliases = {})
+    private void removeById(String id) {
+        boolean personExist = false;
+        int newId = Integer.parseInt(id);
+        LinkedList<Person> personForRemoveById = new LinkedList<>();
+        personForRemoveById.addAll(CollectionOfPerson.getPeople());
+        for (Person element: personForRemoveById) {
+            if (element.getId() == newId) {
+                CollectionOfPerson.getPersons().remove(element);
+                System.out.println("Человек с введённым id удалён из коллекции");
+                personExist = true;
+            }
+        }
+        if (!personExist) {
+            System.out.println("Такого человека не существует");
         }
     }
 
@@ -142,25 +259,7 @@ public class CommandUser {
         }
         System.out.println(commandHistory);
     }
-    /**
-     * Метод, вызываемый командой <strong>min_by_birth</strong>
-     */
-    @Command1(name = "min_by_birth",
-            args = "",
-            countOfArgs = 0,
-            desc = "Вывести любого человека из коллекции,значение поля birthday которого является минимальным",
-            aliases = {})
-    private void showMinByBirth() {
-        Date minBirth = new Date(Long.MAX_VALUE);
-        Person personWithEarliestBirth = new Person();
-        for (Person person : collection.getPersons()) {
-            if (person.getBirthday().getTime() < minBirth.getTime()) {
-                minBirth = person.getBirthday();
-                personWithEarliestBirth = person;
-            }
-        }
-        System.out.println("Данные o человеке с самым ранним днём рождения:\n" + personWithEarliestBirth);
-    }
+
 
     /**
      * Метод, вызываемый командой <strong>max_by_name</strong>
@@ -171,13 +270,57 @@ public class CommandUser {
             desc = "Вывести любого человека из коллекции, значение поля name которого является максимальным",
             aliases = {})
     private void showMaxByName() {
-        Person personWithMaxName = new Person();
-        for (Person person : collection.getPersons()) {
-            if (personWithMaxName.compareTo(person) < 0) {
-                personWithMaxName = person;
-            }
+        LinkedList<Person> forShowMaxByName = new LinkedList<>();
+        for (Person person : CollectionOfPerson.getPersons()) {
+            forShowMaxByName.add(person);
         }
-        System.out.println("Данные о человеке с самым длинным именем:\n" + personWithMaxName);
+        Collections.sort(forShowMaxByName, new Person.SortByname());
+        System.out.println("Данные о человеке с самым длинным именем:\n" + forShowMaxByName.peekFirst());
+    }
+
+    /**
+     * Метод, вызываемый командой <strong>show</strong>
+     */
+    @Command1(name = "show",
+            args = "",
+            countOfArgs = 0,
+            desc = "Показать всех людей в коллекции",
+            aliases = {})
+    private void show() {
+       //AbobaReader.read("aboba.xml");
+       for (Person person : CollectionOfPerson.getPersons()) {
+           System.out.println(person);
+       }
+    }
+
+    /**
+     * Метод, вызываемый командой <strong>execute_script</strong>
+     *
+     * @param filename имя файла, скрипт из которого необходимо выполнить
+     */
+    @Command1(name = "execute_script",
+            args = "{filename}",
+            countOfArgs = 1,
+            desc = "Считать и исполнить скрипт из указанного файла",
+            aliases = {})
+    private void executeScript(String filename) {
+        try {
+            File starting = new File(System.getProperty("user.dir")); // Получаем текущий каталог пользователя
+            File file = new File(starting, filename);
+            Scanner sc = new Scanner(file);
+            while (sc.hasNext()) {
+                String nextLine = sc.nextLine();
+                if (!("execute_script " + filename).equals(nextLine)) {
+                    ArrayList<String> line = LineSplitter.smartSplit(nextLine);
+                    invokeMethod(getCommandName(line), getCommandArguments(line));
+                } else {
+                    System.out.println("Ошибка выполнения. Скрипт вызывает сам себя.");
+                    break;
+                }
+            }
+        } catch (FileNotFoundException e) {
+            System.out.println("Файла с таким именем в текущей папке нет. Переместите файл и повторите попытку");
+        }
     }
 
 
@@ -185,7 +328,7 @@ public class CommandUser {
      * Метод, циклически считывающий команды из консоли и вызывающий необходимые методы обработки коллекции
      */
     public void commandsReader() {
-        while (true) { // цикл завершится только при вызове команды exit или вводе ctrl+d
+        while (true) { // цикл завершится только при вызове команды exit
             try {
                 ArrayList<String> line = readCommandFromSystemIn();
                 invokeMethod(getCommandName(line), getCommandArguments(line));

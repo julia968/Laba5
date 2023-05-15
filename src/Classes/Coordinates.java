@@ -40,4 +40,11 @@ public class Coordinates {
     public String toString() {
         return "x: " + x + " y: " + y;
     }
+    public Coordinates(long x, int y) {
+        setX(x);
+        setY(y);
+    }
+    public Coordinates() {
+
+    }
 }

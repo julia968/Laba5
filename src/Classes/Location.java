@@ -24,4 +24,13 @@ public class Location {
     public Float getY() {
         return y;
     }
+    public Location(long x, float y) {
+        setX(x);
+        setY(y);
+    }
+
+    @Override
+    public String toString() {
+        return "x = " + x + " y = " + y;
+    }
 }

@@ -7,31 +7,30 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="8fbcbf15-df2e-43e0-9a51-0b58a0054c3c" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/artifacts/Laba5_jar.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/libraries/xstream_1_4_8.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/modules.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/runConfigurations/Main.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/uiDesigner.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Laba5.iml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/Classes/CollectionOfPerson.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/Classes/Color.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/Classes/Coordinates.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/Classes/Country.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/Classes/Location.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/Classes/Person.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/Command/ArgumentListener.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/Command/Command1.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/Command/CommandUser.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/Command/FileXMLReader.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/Command/FileXMLWriter.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/Command/LineSplitter.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/META-INF/MANIFEST.MF" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/Main.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/aboba.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/xstream_1_4_19.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/rec" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/rec1" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/rec2" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/sc1" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/Command/AbobaReader.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/Command/AbobaWriter.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/Laba5_jar.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/artifacts/Laba5_jar.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/artifacts/Laba5_jar.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/xstream_1_4_8.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/runConfigurations/Main.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/runConfigurations/Main.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Laba5.iml" beforeDir="false" afterPath="$PROJECT_DIR$/Laba5.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Classes/CollectionOfPerson.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Classes/CollectionOfPerson.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Classes/Coordinates.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Classes/Coordinates.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Classes/Location.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Classes/Location.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Classes/Person.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Classes/Person.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Command/ArgumentListener.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Command/ArgumentListener.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Command/CommandUser.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Command/CommandUser.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Command/FileXMLReader.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Command/FileXMLWriter.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Command/LineSplitter.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Command/LineSplitter.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Main.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/aboba.xml" beforeDir="false" afterPath="$PROJECT_DIR$/aboba.xml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -52,6 +51,9 @@
   <component name="MarkdownSettingsMigration">
     <option name="stateVersion" value="1" />
   </component>
+  <component name="ProblemsViewState">
+    <option name="selectedTabId" value="CurrentFile" />
+  </component>
   <component name="ProjectId" id="2MaxRAKh21ubtecbpZ6QRqKh8Wh" />
   <component name="ProjectLevelVcsManager" settingsEditedManually="true">
     <ConfirmationsSetting value="2" id="Add" />
@@ -71,16 +73,22 @@
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "SHARE_PROJECT_CONFIGURATION_FILES": "true",
     "jdk.selected.JAVA_MODULE": "18",
-    "last_opened_file_path": "C:/Users/79856/IdeaProjects/Laba5",
-    "project.structure.last.edited": "Modules",
+    "last_opened_file_path": "C:/Users/79856/IdeaProjects/Laba5/src",
+    "project.structure.last.edited": "Artifacts",
     "project.structure.proportion": "0.15",
     "project.structure.side.proportion": "0.2",
-    "settings.editor.selected.configurable": "fileTemplates"
+    "settings.editor.selected.configurable": "preferences.toDoOptions"
   }
 }]]></component>
   <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\Users\79856\IdeaProjects\Laba5\src" />
+      <recent name="C:\Users\79856\IdeaProjects\Laba5" />
+    </key>
     <key name="MoveFile.RECENT_KEYS">
       <recent name="C:\Users\79856\IdeaProjects\Laba5\out\artifacts\Laba5_jar" />
+      <recent name="C:\Users\79856\IdeaProjects\Laba5" />
+      <recent name="C:\Users\79856\IdeaProjects\Laba5\src" />
       <recent name="C:\Users\79856\IdeaProjects\Laba5\out\artifacts" />
     </key>
   </component>
@@ -121,5 +129,22 @@
   </component>
   <component name="VcsManagerConfiguration">
     <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
+  </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <breakpoints>
+        <breakpoint enabled="true" type="java-exception">
+          <properties class="java.io.FileNotFoundException" package="java.io" />
+          <option name="timeStamp" value="2" />
+        </breakpoint>
+      </breakpoints>
+      <breakpoints-dialog>
+        <breakpoints-dialog>
+          <selected-grouping-rules>
+            <grouping-rule id="XBreakpointGroupingByPackageRule" />
+          </selected-grouping-rules>
+        </breakpoints-dialog>
+      </breakpoints-dialog>
+    </breakpoint-manager>
   </component>
 </project>

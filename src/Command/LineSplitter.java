@@ -8,7 +8,6 @@ import java.util.ArrayList;
 public final class LineSplitter {
 
     private LineSplitter() {
-        //not called
     }
     /**
      * Метод, разделяющий полученную строку по пробелам, учитывая при этом экранизацию

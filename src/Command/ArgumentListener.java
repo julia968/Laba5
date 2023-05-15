@@ -15,7 +15,7 @@ import java.util.Scanner;
 public class ArgumentListener {
     /**
      * Метод обработки и инициализации данных примитивных типов для переданного
-     * в аргументе ЧЕЛОВЕКА
+     * в аргументе человека
      *
      * @param person человек, характеристики примитивных типов которого вводит пользователь
      */
@@ -27,7 +27,7 @@ public class ArgumentListener {
             person.setHeight(Long.parseLong(inputArray[1]));
             person.setNationality(Country.valueOf(inputArray[2]));
         } catch (IllegalArgumentException e) {
-            System.out.println("Введены некорректные данные, верный формат: name height[>0] nationality");
+            System.out.println("Введены некорректные данные, верный формат: name[записать буквами] height[>0, записать цифрами] nationality[выбрать из предложенных]");
             inputPrimitives(person);
         }
     }
@@ -86,7 +86,7 @@ public class ArgumentListener {
     /**
      * Метод обработки цвета глаз человека, полученного от пользователя
      *
-     * @param person человек, цвет которого запрашивается у пользователя
+     * @param person человек, цвет глаз которого запрашивается у пользователя
      */
     protected void inputEyeColor(Person person) {
         Scanner scanner = new Scanner(System.in);

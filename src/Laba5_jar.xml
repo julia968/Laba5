@@ -3,7 +3,6 @@
     <output-path>$PROJECT_DIR$/out/artifacts/Laba5_jar</output-path>
     <root id="archive" name="Laba5.jar">
       <element id="module-output" name="Laba5" />
-      <element id="extracted-dir" path="$USER_HOME$/Downloads/xstream-1.4.19.jar" path-in-jar="/" />
     </root>
   </artifact>
 </component>
